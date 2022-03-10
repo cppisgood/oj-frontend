@@ -1,14 +1,39 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { About } from './About';
+import { Provider } from 'react-redux';
+import { store, persistor } from './store'
+import { PersistGate } from 'redux-persist/integration/react'
+import { Home } from './Home';
+import { CookiesProvider } from 'react-cookie';
+import { User } from './User';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <CookiesProvider>
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route element={<App />} >
+                                <Route path="/" element={<Home />} />
+                                <Route path="about" element={<About />} />
+                                <Route path="user">
+                                    <Route path=":username" element={<User></User>}></Route>
+                                </Route>
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+                </PersistGate>
+            </Provider>
+        </CookiesProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
