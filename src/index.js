@@ -12,6 +12,9 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { Home } from './Home';
 import { CookiesProvider } from 'react-cookie';
 import { User } from './User';
+import { Problem } from './Problem';
+import { ProblemEditor } from './ProblemEditor'
+import { Problems } from './Problems';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -25,6 +28,12 @@ ReactDOM.render(
                                 <Route path="about" element={<About />} />
                                 <Route path="user">
                                     <Route path=":username" element={<User></User>}></Route>
+                                </Route>
+                                <Route path="problem">
+                                    <Route path=":problem_id" element={<Problem></Problem>}></Route>
+                                </Route>
+                                <Route path="problems" element={<Problems></Problems>}></Route>
+                                <Route path="problem-editor" element={<ProblemEditor></ProblemEditor>}>
                                 </Route>
                             </Route>
                         </Routes>

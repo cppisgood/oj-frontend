@@ -1,20 +1,17 @@
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState } from "react"
 import { Card, Col, Container, Row } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import api from "./api"
 
 export function User() {
     const params = useParams()
-    const f = useCallback(() => {
+    const [userInfo, setUserInfo] = useState()
+
+    useEffect(() => {
         api.user(params.username, (res) => {
             setUserInfo(res.data.msg)
         })
     }, [params])
-    const [userInfo, setUserInfo] = useState()
-
-    useEffect(() => {
-        f()
-    }, [f])
     console.log(userInfo)
     console.log(JSON.stringify(userInfo))
     return (

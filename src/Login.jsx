@@ -1,8 +1,27 @@
 import { useState } from "react";
 import { Button, Form, Modal, Alert, Container, Row } from "react-bootstrap"
 import { login } from "./features/user/userSlice";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import api from "./api"
+import { useNavigate } from "react-router-dom"
+
+// export function RequireLogin() {
+//     const navigate = useNavigate();
+//     const username = useSelector(state => state.user.username);
+
+//     return (
+//         <div className='RequireLogin'>
+//             {
+//                 !username && <Modal>
+//                     <Modal.body>
+//                         {/* please */}
+//                     </Modal.body>
+//                 </Modal>
+//             }
+//         </div>
+//     )
+// }
+
 
 export function Login(props) {
     const [username, setUsername] = useState('')

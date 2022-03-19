@@ -51,6 +51,23 @@ let api = {
         })
             .then(handler)
             .catch(() => { })
+    },
+    add_probelm(handler) {
+        axios.post('/api/problem')
+            .then(handler)
+            .catch(() => {})
+    },
+    update_probelm(problem_id, problem, handler) {
+        axios.patch(`/api/problem/${problem_id}`, problem)
+            .then(handler)
+            .catch(() => {})
+    },
+    get_problem(problem_id, handler) {
+        axios.get(`/api/problem/${problem_id}`)
+            .then(handler)
+            .catch((e) => {
+                console.log("?", e)
+            })
     }
 }
 
